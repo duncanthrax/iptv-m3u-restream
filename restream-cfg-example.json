@@ -2,7 +2,7 @@
   "extUrl"    : "https://my.own.server/iptv/",
   "m3uSrc"    : "http://typical.iptv.org:6655/get.php?username=myusername&password=mypassword&type=m3u_plus&output=ts",
   "port"      : 3666,
-  "numWorkers": 5,
+  "numWorkers": 3,
   "blacklist" : [],
   "debug"     : { "transcoder": true },
   "profiles"  : {
