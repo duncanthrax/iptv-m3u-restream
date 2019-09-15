@@ -36,15 +36,20 @@ See the section on nginx below.
 
 __extUrl__: The base URL that your proxy is reachable as, for
 example `https://my.offsite.server/iptv/`.
+
 __m3uSrc__: The M3U URL from your IPTV provider. Will usually
 contain username and password as URL parameters.
+
 __port__: TCP listening port that the proxy will use.
+
 __numWorkers__: Amount of streaming workers to spawn. Since
 this proxy is designed for single clients, they are only
 needed when switching channels. Three are enough.
+
 __blacklist__: A list of regular expression strings matching
 program names that you want filtered from the M3U list. Useful
 for skipping on crap that you don't want.
+
 __profiles__: Transcoding profiles. At least one profile called
 `default` must be present. Each profile has three sub-options:
   * `contentType`: The content type that is advertised for the
@@ -57,7 +62,7 @@ __profiles__: Transcoding profiles. At least one profile called
   transcoder. The transcoder is spawned without a shell, so
   no escaping is needed.
 
-## Nginx setup (recommended,
+## Nginx setup (recommended, optional)
 In any server (hopefully SSL-enabled), pick a path location
 for your IPTV service, and link the proxy in like this:
 
@@ -66,12 +71,9 @@ location /iptv/ {
     proxy_pass http://127.0.0.1:3666/;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
-    #proxy_set_header Connection $connection_upgrade;
     proxy_set_header X-Forwarded-For $remote_addr;
     proxy_set_header Host $host;
 }
 ```
 Here, the URL path is /iptv/ and the proxy port is 3666.
 That's all.
-
-
